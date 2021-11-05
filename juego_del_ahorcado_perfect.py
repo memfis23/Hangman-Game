@@ -13,7 +13,7 @@ def read():
 def run():
     data = read()
     random_word = random.choice(data)
-    enumerate_word = {num: letter for num, letter in enumerate(random_word)}
+    # enumerate_word = {num: letter for num, letter in enumerate(random_word)}
     found_word_list = ["_"] * len(random_word)
     hidden_word = [letter for letter in random_word]
 
@@ -22,10 +22,10 @@ def run():
         print('¡Adivina la palabra!')
         found_word = ' '.join(found_word_list)
         print(found_word + '\n')
-        chosen_letter = input('Ingresa una letra: ')
+        chosen_letter = input('Ingresa una letra: ').strip().upper()
         assert chosen_letter.isalpha(), "Solo puedes ingresar letras"
-        for num, letter in enumerate_word.items():
-            if chosen_letter.upper() == letter:
+        for num, letter in enumerate(random_word):
+            if chosen_letter == letter:
                 found_word_list[num] = letter
     os.system("clear")
     print(f'¡Ganaste! La palabra era {random_word}')
